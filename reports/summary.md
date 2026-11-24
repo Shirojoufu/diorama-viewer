@@ -1,17 +1,12 @@
 # Flaky test report
 
-**Runs analysed:** 2 (2 on main, 0 from pull requests) · **Tests tracked:** 131 · **Flaky:** 0 (🔴 0 critical, 🟠 0 high, 🟡 0 medium, ⚪ 0 low) · **Consistently failing:** 4 · **Fixed flakes:** 0
+**Runs analysed:** 3 (3 on main, 0 from pull requests) · **Tests tracked:** 131 · **Flaky:** 0 (🔴 0 critical, 🟠 0 high, 🟡 0 medium, ⚪ 0 low) · **Consistently failing:** 4 · **Fixed flakes:** 0
 
 ## This run
 
-main · commit `ca5a8af` · Add Diorama Viewer with Paper Whale sample, tests, CI and Pages deploy
+main · commit `90e9544` · Give the browser tests a smaller viewport and longer timeouts on CI
 
-| Test | Verdict | Severity | Message |
-| --- | --- | --- | --- |
-| `smoke.spec.mjs."Sample stack" restores the whale after the layers are changed [browser]` | ❌ failure: no evidence of flakiness, likely a real failure |  | expect(locator).toHaveText(expected) failed |
-| `smoke.spec.mjs.adds a layer from each supported image format [browser]` | ❌ failure: no evidence of flakiness, likely a real failure |  | Test timeout of 30000ms exceeded. |
-| `smoke.spec.mjs.each sample WebP decodes at 750 × 1000, with alpha on every layer but the sky [browser]` | ❌ failure: no evidence of flakiness, likely a real failure |  | Test timeout of 30000ms exceeded. |
-| `smoke.spec.mjs.reports files it cannot open and keeps the rest [browser]` | ❌ failure: no evidence of flakiness, likely a real failure |  | Test timeout of 30000ms exceeded. |
+All 122 tests passed.
 
 ## Flaky tests
 
@@ -32,18 +27,18 @@ These fail on their current code and have never passed on it: likely real breaka
 
 ```mermaid
 xychart-beta
-    title "First-attempt pass rate (%), last 2 runs"
-    x-axis "Run" [1, 2]
+    title "First-attempt pass rate (%), last 3 runs"
+    x-axis "Run" [1, 2, 3]
     y-axis "Pass rate" 0 --> 100
-    line [100.0, 55.56]
+    line [100.0, 55.56, 100.0]
 ```
 
 ```mermaid
 xychart-beta
-    title "Flaky failures per run, last 2 runs"
-    x-axis "Run" [1, 2]
+    title "Flaky failures per run, last 3 runs"
+    x-axis "Run" [1, 2, 3]
     y-axis "Flaky failures" 0 --> 1
-    bar [0, 0]
+    bar [0, 0, 0]
 ```
 
 <details><summary>Run key</summary>
@@ -52,6 +47,7 @@ xychart-beta
 | --- | --- | --- | --- |
 | 1 | `ca5a8af` | main | 2026-11-24 |
 | 2 | `ca5a8af` | main | 2026-11-24 |
+| 3 | `90e9544` | main | 2026-11-24 |
 
 </details>
 

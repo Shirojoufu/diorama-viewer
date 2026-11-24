@@ -134,3 +134,125 @@ run_index,timestamp,sha,event,pr_number,test,attempt,outcome,fingerprint
 1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,smoke.spec.mjs.reports files it cannot open and keeps the rest,1,error,tree:18e62179c04fcb5783723b969538304ca75cac37
 1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,smoke.spec.mjs.with Claude's downloads API › saves the STL zip through it instead of a browser download,0,passed,tree:18e62179c04fcb5783723b969538304ca75cac37
 1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,smoke.spec.mjs.with Claude's downloads API › says so when the person declines the save,0,passed,tree:18e62179c04fcb5783723b969538304ca75cac37
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: default, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: default, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: default, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: gap thinner than sheet, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: gap thinner than sheet, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: gap thinner than sheet, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: largest, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: largest, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: largest, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: narrow, deep slots, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: narrow, deep slots, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: narrow, deep slots, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: smallest, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: smallest, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL C.C: smallest, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: default, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: default, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: default, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: gap thinner than sheet, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: gap thinner than sheet, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: gap thinner than sheet, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: largest, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: largest, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: largest, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: narrow, deep slots, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: narrow, deep slots, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: narrow, deep slots, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: smallest, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: smallest, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL L.L: smallest, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: default, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: default, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: default, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: gap thinner than sheet, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: gap thinner than sheet, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: gap thinner than sheet, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: largest, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: largest, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: largest, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: narrow, deep slots, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: narrow, deep slots, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: narrow, deep slots, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: smallest, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: smallest, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL Lfull.Lfull: smallest, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: default, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: default, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: default, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: gap thinner than sheet, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: gap thinner than sheet, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: gap thinner than sheet, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: largest, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: largest, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: largest, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: narrow, deep slots, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: narrow, deep slots, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: narrow, deep slots, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: smallest, 1 sheet",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: smallest, 2 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"STL frame.frame: smallest, 7 sheets",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 15-bit, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 15-bit, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 15-bit, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 15-bit, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit grey + alpha, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit grey + alpha, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit grey + alpha, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit grey + alpha, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit with 1-bit alpha, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit with 1-bit alpha, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit with 1-bit alpha, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit with 1-bit alpha, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.TGA 16-bit with every alpha bit clear is treated as opaque,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit without alpha, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit without alpha, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit without alpha, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 16-bit without alpha, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 24-bit, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 24-bit, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 24-bit, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 24-bit, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 32-bit with alpha, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 32-bit with alpha, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 32-bit with alpha, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 32-bit with alpha, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.TGA 32-bit with an all-zero alpha channel is treated as opaque,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 8-bit grey, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 8-bit grey, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 8-bit grey, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA 8-bit grey, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 15-bit, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 15-bit, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 15-bit, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 15-bit, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 16-bit grey + alpha, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 16-bit grey + alpha, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 16-bit grey + alpha, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 16-bit grey + alpha, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 16-bit with 1-bit alpha, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 16-bit with 1-bit alpha, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 16-bit with 1-bit alpha, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 16-bit with 1-bit alpha, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 24-bit, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 24-bit, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 24-bit, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 24-bit, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 32-bit with alpha, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 32-bit with alpha, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 32-bit with alpha, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 32-bit with alpha, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 8-bit grey, bottom-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 8-bit grey, bottom-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 8-bit grey, top-left origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE 8-bit grey, top-right origin",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.TGA RLE output is actually compressed, with packets crossing scanlines",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.TGA rejects files it cannot read,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.TGA skips the image ID and colour map fields,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.crc32 matches the standard check value,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"test.slots are thickness plus clearance, and ribs fill the gaps between them",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.standoffs and none have no printable parts,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.zip records match the central directory,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.zipBlob output opens with a standard unzip tool,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0

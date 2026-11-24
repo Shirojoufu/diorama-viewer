@@ -1,0 +1,998 @@
+{
+ "base_sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+ "commit_message": "Give the browser tests a smaller viewport and longer timeouts on CI",
+ "environment": "unit",
+ "event": "push",
+ "files": [],
+ "merged_pr": null,
+ "pr_head_ref": null,
+ "pr_head_sha": null,
+ "pr_number": null,
+ "ref": "refs/heads/main",
+ "repository": "Shirojoufu/diorama-viewer",
+ "run_attempt": 1,
+ "run_id": "45464856431",
+ "schema": 1,
+ "sha": "90e9544b81067689c5d14defddf05ce90a717225",
+ "tests": {
+  "STL C.C: default, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0032,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: default, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0061,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: default, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0136,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: gap thinner than sheet, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0034,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: gap thinner than sheet, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0048,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: gap thinner than sheet, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0125,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: largest, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0031,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: largest, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0049,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: largest, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0194,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: narrow, deep slots, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0044,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: narrow, deep slots, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0064,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: narrow, deep slots, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0147,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: smallest, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.003,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: smallest, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0049,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL C.C: smallest, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0135,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: default, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0113,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: default, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.023,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: default, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.037,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: gap thinner than sheet, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0026,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: gap thinner than sheet, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0034,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: gap thinner than sheet, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0093,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: largest, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0038,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: largest, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.004,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: largest, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0094,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: narrow, deep slots, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0023,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: narrow, deep slots, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.003,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: narrow, deep slots, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0086,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: smallest, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0042,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: smallest, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0074,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL L.L: smallest, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.014,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: default, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.003,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: default, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.005,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: default, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0102,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: gap thinner than sheet, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0019,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: gap thinner than sheet, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0031,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: gap thinner than sheet, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0072,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: largest, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0027,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: largest, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0034,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: largest, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.008,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: narrow, deep slots, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: narrow, deep slots, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0033,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: narrow, deep slots, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0079,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: smallest, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0031,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: smallest, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0033,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL Lfull.Lfull: smallest, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0108,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: default, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0234,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: default, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0314,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: default, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0429,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: gap thinner than sheet, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0177,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: gap thinner than sheet, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0217,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: gap thinner than sheet, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0369,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: largest, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0203,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: largest, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0239,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: largest, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0536,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: narrow, deep slots, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0201,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: narrow, deep slots, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0223,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: narrow, deep slots, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0419,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: smallest, 1 sheet": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0175,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: smallest, 2 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.022,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "STL frame.frame: smallest, 7 sheets": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0525,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 15-bit, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 15-bit, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 15-bit, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 15-bit, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit grey + alpha, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit grey + alpha, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit grey + alpha, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit grey + alpha, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit with 1-bit alpha, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0004,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit with 1-bit alpha, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit with 1-bit alpha, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0004,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit with 1-bit alpha, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit with every alpha bit clear is treated as opaque": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0003,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit without alpha, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit without alpha, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0003,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit without alpha, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 16-bit without alpha, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 24-bit, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0041,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 24-bit, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 24-bit, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0004,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 24-bit, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 32-bit with alpha, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0003,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 32-bit with alpha, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0004,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 32-bit with alpha, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0003,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 32-bit with alpha, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 32-bit with an all-zero alpha channel is treated as opaque": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0008,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 8-bit grey, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 8-bit grey, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 8-bit grey, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA 8-bit grey, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 15-bit, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 15-bit, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 15-bit, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 15-bit, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 16-bit grey + alpha, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 16-bit grey + alpha, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 16-bit grey + alpha, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 16-bit grey + alpha, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0004,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 16-bit with 1-bit alpha, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 16-bit with 1-bit alpha, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 16-bit with 1-bit alpha, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 16-bit with 1-bit alpha, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 24-bit, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0003,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 24-bit, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 24-bit, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 24-bit, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 32-bit with alpha, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 32-bit with alpha, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 32-bit with alpha, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 32-bit with alpha, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 8-bit grey, bottom-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 8-bit grey, bottom-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 8-bit grey, top-left origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE 8-bit grey, top-right origin": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0002,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA RLE output is actually compressed, with packets crossing scanlines": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0004,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA rejects files it cannot read": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0009,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.TGA skips the image ID and colour map fields": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0003,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.crc32 matches the standard check value": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0013,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.slots are thickness plus clearance, and ribs fill the gaps between them": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0003,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.standoffs and none have no printable parts": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0001,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.zip records match the central directory": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0099,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "test.zipBlob output opens with a standard unzip tool": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 0.0631,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  }
+ },
+ "timestamp": "2026-11-24T18:59:59Z",
+ "tree": "006078a36fd69481b39e0125da70d91e4d1b2ec0",
+ "workflow": "CI"
+}
