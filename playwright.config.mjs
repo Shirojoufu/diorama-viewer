@@ -10,6 +10,10 @@ export default defineConfig({
   // detector sees each attempt in its own JUnit file.
   retries: 0,
   forbidOnly: !!process.env.CI,
+  // The page redraws its WebGL scene every frame, in software on CI's 2-core runners,
+  // which slows everything else on the page down.
+  timeout: process.env.CI ? 120_000 : 30_000,
+  expect: { timeout: process.env.CI ? 30_000 : 5_000 },
   reporter: [
     ['list'],
     // PLAYWRIGHT_JUNIT_OUTPUT_FILE overrides this path, for retries and repeat runs
@@ -21,7 +25,8 @@ export default defineConfig({
     trace: 'retain-on-failure',
   },
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'], launchOptions: { args: WEBGL_ARGS } } },
+    // a smaller viewport than Desktop Chrome's 1280 × 720 roughly halves the pixels SwiftShader draws per frame
+    { name: 'chromium', use: { ...devices['Desktop Chrome'], viewport: { width: 960, height: 600 }, launchOptions: { args: WEBGL_ARGS } } },
   ],
   webServer: {
     command: 'node tests/serve.mjs 4173',
