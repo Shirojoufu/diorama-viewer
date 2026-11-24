@@ -1,0 +1,94 @@
+{
+ "base_sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+ "commit_message": "Give the browser tests a smaller viewport and longer timeouts on CI",
+ "environment": "browser",
+ "event": "push",
+ "files": [],
+ "merged_pr": null,
+ "pr_head_ref": null,
+ "pr_head_sha": null,
+ "pr_number": null,
+ "ref": "refs/heads/main",
+ "repository": "Shirojoufu/diorama-viewer",
+ "run_attempt": 1,
+ "run_id": "45464856431",
+ "schema": 1,
+ "sha": "90e9544b81067689c5d14defddf05ce90a717225",
+ "tests": {
+  "smoke.spec.mjs.\"Sample stack\" restores the whale after the layers are changed": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 21.963,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.adds a layer from each supported image format": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 28.073,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.downloads the STL zip as a normal browser download": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 5.064,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.each sample WebP decodes at 750 \u00d7 1000, with alpha on every layer but the sky": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 29.768,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.opened from file://, it falls back to the drawn stack without errors": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 5.11,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.opens on the Paper Whale stack, from the Pages sub-path, with vendored three.js and no console errors": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 15.97,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.reports files it cannot open and keeps the rest": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 24.227,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.with Claude's downloads API \u203a saves the STL zip through it instead of a browser download": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 12.1,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.with Claude's downloads API \u203a says so when the person declines the save": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 15.945,
+   "fingerprint": "tree:006078a36fd69481b39e0125da70d91e4d1b2ec0",
+   "fingerprint_kind": "tree"
+  }
+ },
+ "timestamp": "2026-11-24T19:00:06Z",
+ "tree": "006078a36fd69481b39e0125da70d91e4d1b2ec0",
+ "workflow": "CI"
+}

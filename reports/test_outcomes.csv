@@ -256,3 +256,12 @@ run_index,timestamp,sha,event,pr_number,test,attempt,outcome,fingerprint
 2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.standoffs and none have no printable parts,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
 2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.zip records match the central directory,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
 2,2026-11-24T18:59:59Z,90e9544b81067689c5d14defddf05ce90a717225,push,,test.zipBlob output opens with a standard unzip tool,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+3,2026-11-24T19:00:06Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"smoke.spec.mjs.""Sample stack"" restores the whale after the layers are changed",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+3,2026-11-24T19:00:06Z,90e9544b81067689c5d14defddf05ce90a717225,push,,smoke.spec.mjs.adds a layer from each supported image format,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+3,2026-11-24T19:00:06Z,90e9544b81067689c5d14defddf05ce90a717225,push,,smoke.spec.mjs.downloads the STL zip as a normal browser download,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+3,2026-11-24T19:00:06Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"smoke.spec.mjs.each sample WebP decodes at 750 × 1000, with alpha on every layer but the sky",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+3,2026-11-24T19:00:06Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"smoke.spec.mjs.opened from file://, it falls back to the drawn stack without errors",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+3,2026-11-24T19:00:06Z,90e9544b81067689c5d14defddf05ce90a717225,push,,"smoke.spec.mjs.opens on the Paper Whale stack, from the Pages sub-path, with vendored three.js and no console errors",0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+3,2026-11-24T19:00:06Z,90e9544b81067689c5d14defddf05ce90a717225,push,,smoke.spec.mjs.reports files it cannot open and keeps the rest,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+3,2026-11-24T19:00:06Z,90e9544b81067689c5d14defddf05ce90a717225,push,,smoke.spec.mjs.with Claude's downloads API › saves the STL zip through it instead of a browser download,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
+3,2026-11-24T19:00:06Z,90e9544b81067689c5d14defddf05ce90a717225,push,,smoke.spec.mjs.with Claude's downloads API › says so when the person declines the save,0,passed,tree:006078a36fd69481b39e0125da70d91e4d1b2ec0
