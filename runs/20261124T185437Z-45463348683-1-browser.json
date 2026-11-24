@@ -1,0 +1,102 @@
+{
+ "base_sha": "be79b604fea9955c4a140549261d366fe17f3385",
+ "commit_message": "Add Diorama Viewer with Paper Whale sample, tests, CI and Pages deploy",
+ "environment": "browser",
+ "event": "push",
+ "files": [],
+ "merged_pr": null,
+ "pr_head_ref": null,
+ "pr_head_sha": null,
+ "pr_number": null,
+ "ref": "refs/heads/main",
+ "repository": "Shirojoufu/diorama-viewer",
+ "run_attempt": 1,
+ "run_id": "45463348683",
+ "schema": 1,
+ "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+ "tests": {
+  "smoke.spec.mjs.\"Sample stack\" restores the whale after the layers are changed": {
+   "attempts": [
+    "failed",
+    "failed"
+   ],
+   "duration": 26.119,
+   "fingerprint": "tree:18e62179c04fcb5783723b969538304ca75cac37",
+   "fingerprint_kind": "tree",
+   "message": "expect(locator).toHaveText(expected) failed"
+  },
+  "smoke.spec.mjs.adds a layer from each supported image format": {
+   "attempts": [
+    "error",
+    "error"
+   ],
+   "duration": 30.784,
+   "fingerprint": "tree:18e62179c04fcb5783723b969538304ca75cac37",
+   "fingerprint_kind": "tree",
+   "message": "Test timeout of 30000ms exceeded."
+  },
+  "smoke.spec.mjs.downloads the STL zip as a normal browser download": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 5.619,
+   "fingerprint": "tree:18e62179c04fcb5783723b969538304ca75cac37",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.each sample WebP decodes at 750 \u00d7 1000, with alpha on every layer but the sky": {
+   "attempts": [
+    "error",
+    "error"
+   ],
+   "duration": 31.64,
+   "fingerprint": "tree:18e62179c04fcb5783723b969538304ca75cac37",
+   "fingerprint_kind": "tree",
+   "message": "Test timeout of 30000ms exceeded."
+  },
+  "smoke.spec.mjs.opened from file://, it falls back to the drawn stack without errors": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 7.342,
+   "fingerprint": "tree:18e62179c04fcb5783723b969538304ca75cac37",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.opens on the Paper Whale stack, from the Pages sub-path, with vendored three.js and no console errors": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 15.308,
+   "fingerprint": "tree:18e62179c04fcb5783723b969538304ca75cac37",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.reports files it cannot open and keeps the rest": {
+   "attempts": [
+    "error",
+    "error"
+   ],
+   "duration": 33.757,
+   "fingerprint": "tree:18e62179c04fcb5783723b969538304ca75cac37",
+   "fingerprint_kind": "tree",
+   "message": "Test timeout of 30000ms exceeded."
+  },
+  "smoke.spec.mjs.with Claude's downloads API \u203a saves the STL zip through it instead of a browser download": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 16.448,
+   "fingerprint": "tree:18e62179c04fcb5783723b969538304ca75cac37",
+   "fingerprint_kind": "tree"
+  },
+  "smoke.spec.mjs.with Claude's downloads API \u203a says so when the person declines the save": {
+   "attempts": [
+    "passed"
+   ],
+   "duration": 19.391,
+   "fingerprint": "tree:18e62179c04fcb5783723b969538304ca75cac37",
+   "fingerprint_kind": "tree"
+  }
+ },
+ "timestamp": "2026-11-24T18:54:37Z",
+ "tree": "18e62179c04fcb5783723b969538304ca75cac37",
+ "workflow": "CI"
+}

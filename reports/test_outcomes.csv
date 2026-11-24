@@ -121,3 +121,16 @@ run_index,timestamp,sha,event,pr_number,test,attempt,outcome,fingerprint
 0,2026-11-24T18:54:31Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,test.standoffs and none have no printable parts,0,passed,tree:18e62179c04fcb5783723b969538304ca75cac37
 0,2026-11-24T18:54:31Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,test.zip records match the central directory,0,passed,tree:18e62179c04fcb5783723b969538304ca75cac37
 0,2026-11-24T18:54:31Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,test.zipBlob output opens with a standard unzip tool,0,passed,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,"smoke.spec.mjs.""Sample stack"" restores the whale after the layers are changed",0,failed,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,"smoke.spec.mjs.""Sample stack"" restores the whale after the layers are changed",1,failed,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,smoke.spec.mjs.adds a layer from each supported image format,0,error,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,smoke.spec.mjs.adds a layer from each supported image format,1,error,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,smoke.spec.mjs.downloads the STL zip as a normal browser download,0,passed,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,"smoke.spec.mjs.each sample WebP decodes at 750 × 1000, with alpha on every layer but the sky",0,error,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,"smoke.spec.mjs.each sample WebP decodes at 750 × 1000, with alpha on every layer but the sky",1,error,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,"smoke.spec.mjs.opened from file://, it falls back to the drawn stack without errors",0,passed,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,"smoke.spec.mjs.opens on the Paper Whale stack, from the Pages sub-path, with vendored three.js and no console errors",0,passed,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,smoke.spec.mjs.reports files it cannot open and keeps the rest,0,error,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,smoke.spec.mjs.reports files it cannot open and keeps the rest,1,error,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,smoke.spec.mjs.with Claude's downloads API › saves the STL zip through it instead of a browser download,0,passed,tree:18e62179c04fcb5783723b969538304ca75cac37
+1,2026-11-24T18:54:37Z,ca5a8af89c05e9ca8508b572cc8d670fb89c31ea,push,,smoke.spec.mjs.with Claude's downloads API › says so when the person declines the save,0,passed,tree:18e62179c04fcb5783723b969538304ca75cac37

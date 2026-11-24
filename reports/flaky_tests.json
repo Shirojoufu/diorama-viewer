@@ -1,1 +1,286 @@
-[]
+[
+ {
+  "key": "smoke.spec.mjs.\"Sample stack\" restores the whale after the layers are changed [browser]",
+  "status": "failing",
+  "severity": null,
+  "observations": 2,
+  "failures": 2,
+  "flaky_observations": 0,
+  "flaky_failures": 0,
+  "failure_rate": 0.0,
+  "flips": 0,
+  "retry_flakes": 0,
+  "main_failures": 0,
+  "active": false,
+  "flaky_fingerprints": [],
+  "flaky_runs": [],
+  "first_flaky_failure": null,
+  "introduced_in": null,
+  "previous_code_seen_in": null,
+  "failing_since": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "fixed_in": null,
+  "possibly_fixed_in": null,
+  "passes_since_fix": 0,
+  "passes_needed": 0,
+  "last_failure": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "last_seen": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "timeline": [
+   [
+    1,
+    0,
+    "failed"
+   ],
+   [
+    1,
+    1,
+    "failed"
+   ]
+  ]
+ },
+ {
+  "key": "smoke.spec.mjs.adds a layer from each supported image format [browser]",
+  "status": "failing",
+  "severity": null,
+  "observations": 2,
+  "failures": 2,
+  "flaky_observations": 0,
+  "flaky_failures": 0,
+  "failure_rate": 0.0,
+  "flips": 0,
+  "retry_flakes": 0,
+  "main_failures": 0,
+  "active": false,
+  "flaky_fingerprints": [],
+  "flaky_runs": [],
+  "first_flaky_failure": null,
+  "introduced_in": null,
+  "previous_code_seen_in": null,
+  "failing_since": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "fixed_in": null,
+  "possibly_fixed_in": null,
+  "passes_since_fix": 0,
+  "passes_needed": 0,
+  "last_failure": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "last_seen": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "timeline": [
+   [
+    1,
+    0,
+    "error"
+   ],
+   [
+    1,
+    1,
+    "error"
+   ]
+  ]
+ },
+ {
+  "key": "smoke.spec.mjs.each sample WebP decodes at 750 \u00d7 1000, with alpha on every layer but the sky [browser]",
+  "status": "failing",
+  "severity": null,
+  "observations": 2,
+  "failures": 2,
+  "flaky_observations": 0,
+  "flaky_failures": 0,
+  "failure_rate": 0.0,
+  "flips": 0,
+  "retry_flakes": 0,
+  "main_failures": 0,
+  "active": false,
+  "flaky_fingerprints": [],
+  "flaky_runs": [],
+  "first_flaky_failure": null,
+  "introduced_in": null,
+  "previous_code_seen_in": null,
+  "failing_since": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "fixed_in": null,
+  "possibly_fixed_in": null,
+  "passes_since_fix": 0,
+  "passes_needed": 0,
+  "last_failure": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "last_seen": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "timeline": [
+   [
+    1,
+    0,
+    "error"
+   ],
+   [
+    1,
+    1,
+    "error"
+   ]
+  ]
+ },
+ {
+  "key": "smoke.spec.mjs.reports files it cannot open and keeps the rest [browser]",
+  "status": "failing",
+  "severity": null,
+  "observations": 2,
+  "failures": 2,
+  "flaky_observations": 0,
+  "flaky_failures": 0,
+  "failure_rate": 0.0,
+  "flips": 0,
+  "retry_flakes": 0,
+  "main_failures": 0,
+  "active": false,
+  "flaky_fingerprints": [],
+  "flaky_runs": [],
+  "first_flaky_failure": null,
+  "introduced_in": null,
+  "previous_code_seen_in": null,
+  "failing_since": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "fixed_in": null,
+  "possibly_fixed_in": null,
+  "passes_since_fix": 0,
+  "passes_needed": 0,
+  "last_failure": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "last_seen": {
+   "index": 1,
+   "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+   "timestamp": "2026-11-24T18:54:37Z",
+   "event": "push",
+   "ref": "refs/heads/main",
+   "pr_number": null,
+   "merged_pr": null,
+   "run_id": "45463348683",
+   "run_attempt": 1,
+   "environment": "browser"
+  },
+  "timeline": [
+   [
+    1,
+    0,
+    "error"
+   ],
+   [
+    1,
+    1,
+    "error"
+   ]
+  ]
+ }
+]
