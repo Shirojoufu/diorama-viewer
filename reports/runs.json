@@ -1,0 +1,24 @@
+[
+ {
+  "index": 0,
+  "sha": "ca5a8af89c05e9ca8508b572cc8d670fb89c31ea",
+  "timestamp": "2026-11-24T18:54:31Z",
+  "event": "push",
+  "ref": "refs/heads/main",
+  "pr_number": null,
+  "merged_pr": null,
+  "run_id": "45463348683",
+  "run_attempt": 1,
+  "environment": "unit",
+  "main": true,
+  "tests": 122,
+  "passed": 122,
+  "failed": 0,
+  "skipped": 0,
+  "failed_after_retry": 0,
+  "flaky_failures": 0,
+  "pass_rate": 100.0,
+  "coverage": null,
+  "diff_coverage": null
+ }
+]
