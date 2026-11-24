@@ -1,0 +1,198 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  unit:
+    name: Unit tests
+    runs-on: ubuntu-24.04
+    outputs:
+      tested: ${{ steps.tests.outcome == 'success' || steps.tests.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Test
+        id: tests
+        continue-on-error: true
+        run: npm test
+
+      # A test that fails, then passes on the same commit, is flaky rather than broken.
+      - name: Retry failed tests
+        id: retry
+        if: steps.tests.outcome == 'failure'
+        continue-on-error: true
+        env:
+          JUNIT_FILE: reports/junit/unit-retry-1.xml
+        run: npm test
+
+      - name: Upload test results
+        if: always() && steps.tests.outcome != 'skipped'
+        uses: actions/upload-artifact@v7
+        with:
+          name: unit-results-${{ github.run_attempt }}
+          path: reports/junit/
+          retention-days: 14
+
+      - name: Fail on real test failures
+        if: steps.tests.outcome == 'failure' && steps.retry.outcome != 'success'
+        run: |
+          echo "::error::Unit tests failed and still failed on retry"
+          exit 1
+
+  browser:
+    name: Browser tests (Playwright)
+    runs-on: ubuntu-24.04
+    outputs:
+      tested: ${{ steps.tests.outcome == 'success' || steps.tests.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Test
+        id: tests
+        continue-on-error: true
+        run: npx playwright test
+
+      - name: Retry failed tests
+        id: retry
+        if: steps.tests.outcome == 'failure'
+        continue-on-error: true
+        env:
+          PLAYWRIGHT_JUNIT_OUTPUT_FILE: reports/junit/browser-retry-1.xml
+          PLAYWRIGHT_HTML_OUTPUT_DIR: reports/playwright-html-retry-1
+        run: npx playwright test --last-failed
+
+      - name: Upload test results
+        if: always() && steps.tests.outcome != 'skipped'
+        uses: actions/upload-artifact@v7
+        with:
+          name: browser-results-${{ github.run_attempt }}
+          path: reports/junit/
+          retention-days: 14
+
+      - name: Upload Playwright report
+        if: always() && steps.tests.outcome != 'skipped'
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report-${{ github.run_attempt }}
+          path: |
+            reports/playwright-html*/
+            reports/playwright-results/
+          retention-days: 14
+
+      - name: Fail on real test failures
+        if: steps.tests.outcome == 'failure' && steps.retry.outcome != 'success'
+        run: |
+          echo "::error::Browser tests failed and still failed on retry"
+          exit 1
+
+  # Separate job so only this one gets write access: it pushes run history to the
+  # flaky-data branch. See https://github.com/Shirojoufu/Flaky-Tests
+  flaky-tests:
+    name: Flaky test detection
+    needs: [unit, browser]
+    if: always() && (needs.unit.outputs.tested == 'true' || needs.browser.outputs.tested == 'true')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v8
+        if: needs.unit.outputs.tested == 'true'
+        with:
+          name: unit-results-${{ github.run_attempt }}
+          path: .flaky/unit
+
+      - uses: actions/download-artifact@v8
+        if: needs.browser.outputs.tested == 'true'
+        with:
+          name: browser-results-${{ github.run_attempt }}
+          path: .flaky/browser
+
+      # No coverage input: this is JavaScript, and the detector reads coverage.py JSON.
+      # Each test is then fingerprinted by the whole commit tree. The two suites are
+      # recorded as separate environments because the action runs twice per workflow run.
+      - name: Detect flaky unit tests
+        if: needs.unit.outputs.tested == 'true'
+        uses: Shirojoufu/Flaky-Tests@ec75748fc1a393599e37fe60872e412d57e89ae8 # v0.1.0
+        with:
+          junit: .flaky/unit/unit.xml
+          retry-junit: .flaky/unit/unit-retry-*.xml
+          environment: unit
+
+      - name: Detect flaky browser tests
+        if: needs.browser.outputs.tested == 'true'
+        uses: Shirojoufu/Flaky-Tests@ec75748fc1a393599e37fe60872e412d57e89ae8 # v0.1.0
+        with:
+          junit: .flaky/browser/browser.xml
+          retry-junit: .flaky/browser/browser-retry-*.xml
+          environment: browser
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: [unit, browser]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # The environment makes GitHub record each run as a Deployment with a status,
+    # which is what dora-report.yml measures.
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Assemble the site
+        run: |
+          mkdir _site
+          cp -r index.html .nojekyll LICENSE vendor samples docs _site/
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v5

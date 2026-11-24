@@ -1,0 +1,97 @@
+name: Flaky hunt
+
+# Runs the browser suite several times on the same commit. The detector compares the
+# outcomes, so a test that both passes and fails here is flagged as flaky even if CI
+# has not caught it yet.
+on:
+  schedule:
+    - cron: "0 5 * * 3" # Wednesdays 05:00 UTC
+  workflow_dispatch:
+    inputs:
+      runs:
+        description: How many times to run the browser suite
+        type: number
+        default: 5
+
+permissions:
+  contents: read
+
+jobs:
+  repeat:
+    name: Browser tests × ${{ inputs.runs || 5 }}
+    runs-on: ubuntu-24.04
+    outputs:
+      failed-every-run: ${{ steps.runs.outputs.failed-every-run }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      # Each run gets its own JUnit file: the first is the main run, the rest go to the
+      # detector as repeat attempts. (--repeat-each would put every attempt in one file
+      # under the same test name, and the detector would keep only the worst outcome.)
+      - name: Run the suite
+        id: runs
+        env:
+          RUNS: ${{ inputs.runs || 5 }}
+        run: |
+          failed=0
+          for i in $(seq 1 "$RUNS"); do
+            if [ "$i" = 1 ]; then out=reports/junit/browser.xml; else out="reports/junit/browser-retry-$i.xml"; fi
+            if PLAYWRIGHT_JUNIT_OUTPUT_FILE="$out" PLAYWRIGHT_HTML_OUTPUT_DIR="reports/playwright-html-$i" npx playwright test; then
+              echo "Run $i passed"
+            else
+              echo "::warning::Run $i of $RUNS had failures"; failed=$((failed + 1))
+            fi
+          done
+          echo "$failed of $RUNS runs had failures" >> "$GITHUB_STEP_SUMMARY"
+          echo "failed-every-run=$([ "$failed" = "$RUNS" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: flaky-hunt-results-${{ github.run_attempt }}
+          path: reports/
+          retention-days: 14
+
+  flaky-tests:
+    name: Flaky test detection
+    needs: repeat
+    if: always() && needs.repeat.result != 'cancelled'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: flaky-hunt-results-${{ github.run_attempt }}
+          path: .flaky
+
+      - uses: Shirojoufu/Flaky-Tests@ec75748fc1a393599e37fe60872e412d57e89ae8 # v0.1.0
+        with:
+          junit: .flaky/junit/browser.xml
+          retry-junit: .flaky/junit/browser-retry-*.xml
+          environment: browser
+
+      # Same convention as CI: flaky tests are warnings, a test that never passes is an error.
+      - name: Fail if every run failed
+        if: needs.repeat.outputs.failed-every-run == 'true'
+        run: |
+          echo "::error::The browser suite failed in every run: a real failure, not a flake. See the job summary."
+          exit 1

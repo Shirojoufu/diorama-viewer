@@ -1,0 +1,33 @@
+name: DORA report
+
+# The four DORA metrics for this repo's GitHub Pages deployments, in the job summary.
+# Every run of the CI deploy job is a Deployment to the github-pages environment.
+# See https://github.com/Shirojoufu/DORA-Metrics
+on:
+  schedule:
+    - cron: "0 7 * * 1" # Mondays 07:00 UTC
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      days:
+        description: How far back to look
+        default: "90"
+
+permissions:
+  contents: read
+  deployments: read
+  pull-requests: read
+
+jobs:
+  report:
+    # after CI, only for pushes to main, the runs that deploy
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: Shirojoufu/DORA-Metrics@1cb0882b754ae5ba03d653dc3a6579f35373fc93 # v1.0.1
+        with:
+          environment: github-pages
+          days: ${{ inputs.days || '90' }}

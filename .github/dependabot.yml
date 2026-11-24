@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Bumps the SHA-pinned Flaky-Tests and DORA-Metrics actions (and their # vX.Y.Z
+  # comments) when they publish a release, along with the actions/* versions.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"

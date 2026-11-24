@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diorama Viewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap">
+<style>
+/* VOICE: a gallery plinth after hours, hushed and exact
+   IDEA: a perspex shadowbox under a single spotlight on a black stage
+   PICTURE: the live 3D stack, full-bleed, with reflection and contact shadow
+   COLOUR and TYPE: black, graphite hairlines, silver accent; Inter Tight light/medium
+   LAYOUT: stage fills the window, a slim glass panel floats left; stacks below 900px */
+:root{color-scheme:dark;--bg:#000;--panel:rgba(14,15,16,.78);--ink:#eceef0;--mute:#8a9096;--dim:#5b6066;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.16);--acc:#d9e1e6}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 14px/1.55 "Inter Tight",system-ui,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
+.app{position:relative;height:100vh}
+#stage{position:absolute;inset:0}
+#stage canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+#stage canvas:active{cursor:grabbing}
+aside{position:absolute;top:16px;left:16px;bottom:16px;width:308px;background:var(--panel);backdrop-filter:blur(18px) saturate(120%);-webkit-backdrop-filter:blur(18px) saturate(120%);border:1px solid var(--line);border-radius:16px;overflow-y:auto;padding:22px 20px 24px;scrollbar-width:thin;scrollbar-color:#2a2d30 transparent;transition:transform .35s ease,opacity .35s ease}
+aside.hide{transform:translateX(calc(-100% - 24px));opacity:0}
+h1{font-size:22px;line-height:1.1;margin:0;font-weight:500;letter-spacing:-.01em}
+.sub{color:var(--mute);margin:6px 0 18px;font-size:13px}
+h2{font-size:13px;margin:22px 0 10px;font-weight:500;color:var(--mute);display:flex;align-items:center;gap:10px}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.drop{position:relative;display:block;border:1px dashed var(--line2);border-radius:12px;padding:16px 14px;text-align:center;cursor:pointer;color:var(--mute);font-size:13px;transition:border-color .2s,background .2s}
+.drop:hover,.drop.over,.drop:focus-within{border-color:var(--acc);background:rgba(255,255,255,.03);color:var(--ink)}
+.drop strong{display:block;color:var(--ink);font-weight:500;font-size:14px;margin-bottom:2px}
+.drop input{position:absolute;opacity:0;width:1px;height:1px}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+li{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;border-radius:10px;padding:7px 8px;background:rgba(255,255,255,.025);border:1px solid transparent;transition:border-color .2s}
+li:hover{border-color:var(--line)}
+li img{width:36px;height:48px;object-fit:contain;border-radius:3px;background:repeating-conic-gradient(#1b1d1f 0 25%,#232629 0 50%) 0 0/8px 8px}
+.nm{font-weight:400;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.meta{display:flex;align-items:center;gap:10px;margin-top:2px;font-size:13px;color:var(--dim)}
+.meta label{display:flex;align-items:center;gap:5px;color:var(--mute);cursor:pointer}
+.btns{display:flex;gap:2px}
+button,select{font:inherit;font-size:13px;font-weight:400;color:var(--ink);background:transparent;border:1px solid var(--line2);border-radius:999px;min-height:34px;padding:0 14px;cursor:pointer;transition:border-color .2s,background .2s}
+button:hover,select:hover{border-color:var(--acc)}
+button:disabled{opacity:.3;cursor:default}
+.btns button{border-color:transparent;width:28px;min-height:28px;padding:0;color:var(--mute);border-radius:6px}
+.btns button:hover:not(:disabled){color:var(--ink);background:rgba(255,255,255,.06)}
+select{appearance:none;padding-right:30px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238a9096' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 12px center}
+select option{background:#111;color:#eee}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:1px solid var(--acc);outline-offset:3px}
+button.pri{background:var(--acc);color:#0a0b0c;border-color:var(--acc);font-weight:500}
+button.pri:hover{background:#fff}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.empty{color:var(--dim);font-size:13px;padding:6px 2px}
+label.sl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 8px;margin:12px 0;font-size:13px;color:var(--ink)}
+label.sl output{font-variant-numeric:tabular-nums;color:var(--mute);white-space:nowrap}
+input[type=range]{grid-column:1/-1;width:100%;appearance:none;background:transparent;height:18px;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:linear-gradient(var(--acc),var(--acc)) 0/var(--p,50%) 100% no-repeat,#2a2d30;border-radius:2px}
+input[type=range]::-webkit-slider-thumb{appearance:none;width:14px;height:14px;border-radius:50%;background:#fff;margin-top:-6px;box-shadow:0 0 0 4px rgba(255,255,255,.08)}
+input[type=range]::-moz-range-track{height:2px;background:#2a2d30}
+input[type=range]::-moz-range-progress{height:2px;background:var(--acc)}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border:0;border-radius:50%;background:#fff}
+.tg{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:10px 0;font-size:13px;cursor:pointer}
+.sw{appearance:none;width:32px;height:18px;border-radius:999px;background:#2a2d30;position:relative;cursor:pointer;transition:background .2s;flex:none;margin:0}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#8a9096;transition:transform .2s,background .2s}
+.sw:checked{background:#5d6870}.sw:checked::after{transform:translateX(14px);background:#fff}
+.mini{appearance:none;width:14px;height:14px;border:1px solid var(--line2);border-radius:3px;margin:0;display:grid;place-items:center;cursor:pointer}
+.mini:checked{background:var(--acc);border-color:var(--acc)}
+.mini:checked::after{content:"";width:6px;height:3px;border:solid #000;border-width:0 0 1.5px 1.5px;transform:rotate(-45deg) translate(1px,-1px)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:rgba(255,255,255,.04);padding:3px;border-radius:999px;margin-top:6px}
+.seg button{border:0;min-height:28px;padding:0 6px;color:var(--mute)}
+.seg button[aria-pressed=true]{background:rgba(255,255,255,.12);color:var(--ink)}
+.hud{position:absolute;right:20px;bottom:18px;left:344px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end;pointer-events:none}
+.hud>*{pointer-events:auto;background:rgba(14,15,16,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.dims{font-size:13px;color:var(--mute);padding:8px 14px;border-radius:999px;border:1px solid var(--line);margin-right:auto;font-variant-numeric:tabular-nums;white-space:nowrap}
+#toggle{position:absolute;top:16px;left:16px;display:none}
+.hint{position:absolute;top:22px;right:24px;font-size:13px;color:var(--dim);pointer-events:none}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);display:none;place-items:center;padding:20px;z-index:9}
+.modal.on{display:grid}
+.modal>div{background:#0e0f10;border:1px solid var(--line);border-radius:16px;padding:18px;max-width:min(900px,100%);max-height:100%;overflow:auto}
+.modal img{max-width:100%;max-height:68vh;display:block;border-radius:10px;margin:12px 0}
+.note{font-size:13px;color:var(--mute);margin:0 0 12px}
+@media(max-width:900px){
+  body{overflow:auto}.app{height:auto}
+  #stage{position:relative;height:64vh}
+  aside{position:static;width:auto;margin:0;border-radius:0;border:0;border-top:1px solid var(--line);background:#0b0c0d}
+  aside.hide{transform:none;opacity:1}
+  .hud{left:12px;right:12px;bottom:12px;top:auto;position:absolute}.hint{display:none}
+  .stagewrap{position:relative}
+}
+@media(prefers-reduced-motion:reduce){aside,.sw::after{transition:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="stagewrap">
+  <div id="stage"></div>
+  <span class="hint">Drag to orbit · scroll to zoom · right-drag to pan</span>
+  <div class="hud">
+    <span class="dims" id="dims"></span>
+    <button id="hidePanel">Hide panel</button>
+    <button id="front">Front</button>
+    <button id="angle">Angled</button>
+    <button class="pri" id="snap">Snapshot</button>
+  </div>
+</div>
+
+<aside id="panel">
+  <h1>Diorama Viewer</h1>
+  <p class="sub">Layer images on perspex, previewed before you print.</p>
+
+  <label class="drop" id="drop">
+    <input type="file" id="file" accept="image/*,.tga,.TGA" multiple>
+    <strong>Add layer images</strong>Click or drop files · PNG, TGA, WebP or JPG
+  </label>
+  <p class="note" id="loadMsg" aria-live="polite" style="margin:8px 0 0"></p>
+
+  <h2>Layers, back to front</h2>
+  <ol id="list"></ol>
+  <div class="row">
+    <button id="sample">Sample stack</button>
+    <button id="clear">Clear</button>
+  </div>
+
+  <h2>Sheets</h2>
+  <label class="sl">Width <output id="wO"></output><input type="range" id="w" min="5" max="60" step="0.5" value="15"></label>
+  <label class="sl">Height <output id="hO"></output><input type="range" id="h" min="5" max="60" step="0.5" value="20"></label>
+  <label class="sl">Gap between sheets <output id="gO"></output><input type="range" id="g" min="3" max="60" step="1" value="15"></label>
+  <label class="sl">Perspex thickness <output id="tO"></output><input type="range" id="t" min="1" max="10" step="0.5" value="3"></label>
+  <label class="tg">Image placement
+    <select id="fit"><option value="fit">Fit inside</option><option value="fill">Fill and crop</option></select>
+  </label>
+
+  <h2>Mount</h2>
+  <label class="tg">Style
+    <select id="mount">
+      <option value="standoff">Steel standoffs</option>
+      <option value="L">L brackets</option>
+      <option value="Lfull">Full L holder</option>
+      <option value="C">C brackets</option>
+      <option value="frame">Full surround</option>
+      <option value="none">None</option>
+    </select>
+  </label>
+  <label class="tg" id="finRow">Finish
+    <select id="finish">
+      <option value="black">Black PLA</option>
+      <option value="white">White PLA</option>
+      <option value="grey">Grey PLA</option>
+      <option value="walnut">Walnut</option>
+      <option value="alu">Aluminium</option>
+    </select>
+  </label>
+  <label class="sl" id="slotRow">Slot depth <output id="sdO"></output><input type="range" id="sd" min="3" max="15" step="1" value="6"></label>
+  <label class="sl" id="clrRow">Slot clearance <output id="crO"></output><input type="range" id="cr" min="0.1" max="1" step="0.05" value="0.3"></label>
+  <div id="stlBox">
+    <button class="pri" id="stlBtn" style="width:100%;margin-top:6px">Download STL files (.zip)</button>
+    <p class="note" id="stlInfo" style="margin:10px 0 0"></p>
+    <p class="note" id="stlMsg" aria-live="polite" style="margin:6px 0 0"></p>
+  </div>
+  <p class="note" id="stdNote" style="margin:8px 0 0">Standoffs are bought hardware, so there's nothing to print. Switch to a bracket style for STL files.</p>
+
+  <h2>Display</h2>
+  <label class="sl">White removal <output id="wtO"></output><input type="range" id="wt" min="200" max="254" step="1" value="238"></label>
+  <label class="tg">Perspex sheets <input type="checkbox" class="sw" id="acr" checked></label>
+  <label class="sl">Perspex clarity <output id="clO"></output><input type="range" id="cl" min="0" max="100" step="1" value="90"></label>
+  <label class="tg">Plinth and shadow <input type="checkbox" class="sw" id="pl" checked></label>
+  <label class="tg">Slow turn <input type="checkbox" class="sw" id="rot"></label>
+  <div class="tg" style="display:block">Backdrop
+    <div class="seg" id="bgSeg">
+      <button data-bg="black" aria-pressed="true">Black</button>
+      <button data-bg="graphite" aria-pressed="false">Graphite</button>
+      <button data-bg="studio" aria-pressed="false">White</button>
+    </div>
+  </div>
+</aside>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Snapshot">
+  <div>
+    <strong style="font-weight:500">Snapshot</strong>
+    <img id="snapImg" alt="Snapshot of the diorama">
+    <p class="note" id="snapMsg" aria-live="polite">Download it as a PNG, or right-click the image to copy it.</p>
+    <div class="row"><button class="pri" id="snapSave">Download PNG</button><button id="close">Close</button></div>
+  </div>
+</div>
+
+<script src="vendor/three/three.min.js"></script>
+<script src="vendor/three/OrbitControls.js"></script>
+<script src="vendor/three/RoomEnvironment.js"></script>
+<script>
+{
+const $ = id => document.getElementById(id);
+const S = { w:15, h:20, gap:15, thick:3, fit:'fit', wt:238, acr:true, pl:true, rot:false, bg:'black', mount:'standoff', finish:'black', slot:6, clarity:90, clr:0.3 };
+const FIN = { black:{ c:0x18191b, r:0.78, m:0 }, white:{ c:0xe9e9e6, r:0.8, m:0 }, grey:{ c:0x6c7176, r:0.75, m:0 }, walnut:{ c:0x5b3b25, r:0.55, m:0 }, alu:{ c:0xb9bec2, r:0.35, m:0.9 } };
+let layers = [], uid = 0;
+
+/* ---------- renderer, scene, light ---------- */
+const stage = $('stage');
+const renderer = new THREE.WebGLRenderer({ antialias:true, preserveDrawingBuffer:true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.0;
+stage.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 2000);
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.07; controls.autoRotateSpeed = 0.9;
+controls.minDistance = 8; controls.maxDistance = 400; controls.maxPolarAngle = Math.PI * 0.53;
+if (THREE.RoomEnvironment){ const pm = new THREE.PMREMGenerator(renderer); scene.environment = pm.fromScene(new THREE.RoomEnvironment(), 0.04).texture; }
+const hemi = new THREE.HemisphereLight(0xffffff, 0x101214, 0.35); scene.add(hemi);
+const spot = new THREE.SpotLight(0xfff6ea, 1.6, 0, Math.PI / 7, 0.65, 1.2); spot.position.set(8, 70, 45); scene.add(spot); scene.add(spot.target);
+const rim = new THREE.DirectionalLight(0xcfe3ff, 0.35); rim.position.set(-30, 20, -40); scene.add(rim);
+let group = new THREE.Group(); scene.add(group);
+
+/* contact shadow texture: soft radial falloff */
+const shadowTex = (() => {
+  const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d');
+  const g = x.createRadialGradient(128,128,0,128,128,128); g.addColorStop(0,'rgba(0,0,0,.85)'); g.addColorStop(.55,'rgba(0,0,0,.35)'); g.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle = g; x.fillRect(0,0,256,256); return new THREE.CanvasTexture(c);
+})();
+
+const BG = { black:{ bg:0x000000, floor:0x070708, ex:1.0 }, graphite:{ bg:0x17191b, floor:0x1d2023, ex:1.0 }, studio:{ bg:0xeef0f1, floor:0xe2e5e7, ex:0.95 } };
+function setBg(){
+  scene.background = new THREE.Color(BG[S.bg].bg);
+  scene.fog = new THREE.Fog(BG[S.bg].bg, 90, 260);
+  renderer.toneMappingExposure = BG[S.bg].ex;
+  rebuild();
+}
+
+function frameDist(){ return Math.max(S.w, S.h) * 3.1; }
+function viewAngled(){ const d = frameDist(); camera.position.set(d*0.5, d*0.12, d*0.85); controls.target.set(0, -S.h*0.05, 0); controls.update(); }
+function viewFront(){ const d = frameDist(); camera.position.set(0, 0, d); controls.target.set(0, 0, 0); controls.update(); }
+
+new ResizeObserver(() => {
+  const w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
+  renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+}).observe(stage);
+
+/* ---------- image processing ---------- */
+function processLayer(l){
+  const src = l.src, k = Math.min(1, 2048 / Math.max(src.width, src.height));
+  const c = document.createElement('canvas'); c.width = Math.round(src.width * k); c.height = Math.round(src.height * k);
+  const x = c.getContext('2d'); x.drawImage(src, 0, 0, c.width, c.height);
+  if (l.removeWhite){
+    const d = x.getImageData(0, 0, c.width, c.height), p = d.data, thr = S.wt, soft = 24;
+    for (let i = 0; i < p.length; i += 4){
+      const m = Math.min(p[i], p[i+1], p[i+2]);
+      if (m >= thr) p[i+3] = 0; else if (m > thr - soft) p[i+3] = Math.round(p[i+3] * (thr - m) / soft);
+    }
+    x.putImageData(d, 0, 0);
+  }
+  if (l.tex) l.tex.dispose();
+  l.tex = new THREE.CanvasTexture(c); l.tex.encoding = THREE.sRGBEncoding; l.tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  l.aspect = c.width / c.height;
+  // the list shows a 36 × 48 thumbnail; encoding the full 2048 px canvas made the white slider lag
+  const tk = Math.min(1, 96 / Math.max(c.width, c.height)), tc = document.createElement('canvas');
+  tc.width = Math.max(1, Math.round(c.width * tk)); tc.height = Math.max(1, Math.round(c.height * tk));
+  tc.getContext('2d').drawImage(c, 0, 0, tc.width, tc.height); l.thumb = tc.toDataURL('image/png');
+}
+
+/* ---------- build the stack ---------- */
+function disposeGroup(g){ g.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) [].concat(o.material).forEach(m => m.dispose()); }); }
+function rebuild(){
+  scene.remove(group); disposeGroup(group); group = new THREE.Group(); scene.add(group);
+  const n = Math.max(layers.length, 1), W = S.w, H = S.h, gap = S.gap/10, th = S.thick/10;
+  const depth = (n - 1) * gap + th, z0 = -depth / 2 + th / 2;
+  const haze = 1 - S.clarity / 100;   // 0 = crystal clear
+  const faceMat = new THREE.MeshPhysicalMaterial({ color:0xf4fbff, transparent:true, opacity:0.008 + haze * 0.12, roughness:0.01, metalness:0, clearcoat:1, clearcoatRoughness:0.02, envMapIntensity:0.35 + haze * 1.2, depthWrite:false, side:THREE.DoubleSide });
+  const sideMat = new THREE.MeshPhysicalMaterial({ color:0xa8e6d6, transparent:true, opacity:0.3 + haze * 0.45, roughness:0.06, clearcoat:1, envMapIntensity:1.1, emissive:0x2c6a5c, emissiveIntensity:0.15 + haze * 0.1, depthWrite:false });
+  const acrMat = [sideMat, sideMat, sideMat, sideMat, faceMat, faceMat];
+  const edgeMat = new THREE.LineBasicMaterial({ color:0xe6fff7, transparent:true, opacity:0.08 + haze * 0.15 });
+  for (let i = 0; i < n; i++){
+    const z = z0 + i * gap;
+    if (S.acr){
+      const box = new THREE.BoxGeometry(W, H, th);
+      const m = new THREE.Mesh(box, acrMat); m.position.z = z; m.renderOrder = 2; group.add(m);
+      const e = new THREE.LineSegments(new THREE.EdgesGeometry(box), edgeMat); e.position.z = z; group.add(e);
+    }
+    const l = layers[i]; if (!l) continue;
+    let pw = W, ph = H; const t = l.tex; t.repeat.set(1,1); t.offset.set(0,0);
+    const sa = W / H, ia = l.aspect;
+    if (S.fit === 'fit'){ if (ia > sa) ph = W / ia; else pw = H * ia; }
+    else if (ia > sa){ t.repeat.x = sa / ia; t.offset.x = (1 - t.repeat.x) / 2; }
+    else { t.repeat.y = ia / sa; t.offset.y = (1 - t.repeat.y) / 2; }
+    const mat = new THREE.MeshBasicMaterial({ map:t, transparent:true, alphaTest:0.02, side:THREE.DoubleSide, toneMapped:false });
+    const p = new THREE.Mesh(new THREE.PlaneGeometry(pw, ph), mat);
+    p.position.set(0, (S.fit === 'fit' ? -(H - ph) / 2 : 0), z + th / 2 + 0.005); p.renderOrder = 1; group.add(p);
+  }
+  /* ---- mounts ---- */
+  const yB = -H / 2, yT = H / 2, xR = W / 2;
+  let floorY = yB;
+  if (S.mount === 'standoff'){
+    const ins = Math.min(1.2, W * 0.1), len = depth + 1.4, r = Math.max(0.22, Math.min(W, H) * 0.022);
+    const steel = new THREE.MeshPhysicalMaterial({ color:0xd4d8db, metalness:1, roughness:0.22, clearcoat:0.6, envMapIntensity:1.4 });
+    const capG = new THREE.CylinderGeometry(r * 1.4, r * 1.4, 0.55, 40), rodG = new THREE.CylinderGeometry(r, r, len, 40);
+    for (const [sx, sy] of [[-1,1],[1,1],[-1,-1],[1,-1]]){
+      const x = sx * (W / 2 - ins), y = sy * (H / 2 - ins);
+      const rod = new THREE.Mesh(rodG, steel); rod.rotation.x = Math.PI / 2; rod.position.set(x, y, 0); group.add(rod);
+      for (const cz of [-len / 2, len / 2]){ const c = new THREE.Mesh(capG, steel); c.rotation.x = Math.PI / 2; c.position.set(x, y, cz); group.add(c); }
+    }
+  } else if (S.mount !== 'none'){
+    const f = FIN[S.finish];
+    const mm = new THREE.MeshStandardMaterial({ color:f.c, roughness:f.r, metalness:f.m, envMapIntensity:0.8 });
+    const s = S.slot / 10, base = 0.6, cl = 0.02, ext = 0.8;
+    const zA = -depth / 2 - ext, zB = depth / 2 + ext;
+    // gaps between sheets become the ribs of each printed slot
+    const zSegs = []; let prev = zA;
+    for (let i = 0; i < n; i++){ const z = z0 + i * gap, a = z - th / 2 - cl, b = z + th / 2 + cl; if (a > prev) zSegs.push([prev, a]); prev = b; }
+    if (zB > prev) zSegs.push([prev, zB]);
+    const box = (x0, x1, y0, y1, za, zb) => {
+      const m = new THREE.Mesh(new THREE.BoxGeometry(Math.abs(x1 - x0), Math.abs(y1 - y0), Math.abs(zb - za)), mm);
+      m.position.set((x0 + x1) / 2, (y0 + y1) / 2, (za + zb) / 2); group.add(m);
+    };
+    const solid = (x0, x1, y0, y1) => box(x0, x1, y0, y1, zA, zB);
+    const slots = (x0, x1, y0, y1) => zSegs.forEach(([a, b]) => box(x0, x1, y0, y1, a, b));
+    const wall = 0.5;
+    if (S.mount === 'L'){
+      const bw = Math.min(3.5, W * 0.25), hb = Math.min(5, H * 0.3);
+      for (const sx of [-1, 1]){
+        const e = sx * xR, inn = sx * (xR - bw), out = sx * (xR + wall), ein = sx * (xR - Math.min(s, bw));
+        solid(inn, out, yB - base, yB);          // foot plate
+        slots(inn, e, yB, yB + s);               // slotted top of the foot
+        solid(e, out, yB, yB + hb);              // upright
+        slots(ein, e, yB + s, yB + hb);          // slotted inner face of the upright
+      }
+      floorY = yB - base;
+    } else if (S.mount === 'Lfull'){
+      // one piece: full-width slotted base + full-height slotted wall on the left
+      const e = -xR, out = -xR - wall, lip = 0.3;
+      solid(out, xR + lip, yB - base, yB);       // base the whole sheet width
+      slots(e, xR + lip, yB, yB + s);            // slots along the base
+      solid(out, e, yB, yT);                     // wall the whole sheet height
+      slots(e, e + s, yB + s, yT);               // slots up the wall
+      floorY = yB - base;
+    } else if (S.mount === 'C'){
+      const arm = Math.min(3, W * 0.2);
+      for (const sx of [-1, 1]){
+        const e = sx * xR, inn = sx * (xR - arm), out = sx * (xR + wall), ein = sx * (xR - Math.min(s, arm));
+        solid(e, out, yB - base, yT + base);     // spine
+        solid(inn, out, yB - base, yB);          // lower arm
+        solid(inn, out, yT, yT + base);          // upper arm
+        slots(inn, e, yB, yB + s); slots(inn, e, yT - s, yT); slots(ein, e, yB + s, yT - s);
+      }
+      floorY = yB - base;
+    } else if (S.mount === 'frame'){
+      const fw = 0.9, fb = base * 1.6;
+      solid(-xR - fw, xR + fw, yB - fb, yB);     // base rail
+      solid(-xR - fw, xR + fw, yT, yT + fw);     // top rail
+      solid(-xR - fw, -xR, yB, yT); solid(xR, xR + fw, yB, yT);
+      slots(-xR, xR, yB, yB + s); slots(-xR, xR, yT - s, yT);
+      slots(-xR, -xR + s, yB + s, yT - s); slots(xR - s, xR, yB + s, yT - s);
+      floorY = yB - fb;
+    }
+  }
+  if (S.pl){
+    const fy = floorY - 0.01;
+    const floor = new THREE.Mesh(new THREE.CircleGeometry(220, 96), new THREE.MeshPhysicalMaterial({ color:BG[S.bg].floor, roughness:0.32, metalness:0.1, clearcoat:0.8, clearcoatRoughness:0.25, envMapIntensity:0.5 }));
+    floor.rotation.x = -Math.PI / 2; floor.position.y = fy - 0.02; group.add(floor);
+    const sh = new THREE.Mesh(new THREE.PlaneGeometry(W * 1.7, depth * 2.2 + 6), new THREE.MeshBasicMaterial({ map:shadowTex, transparent:true, depthWrite:false, toneMapped:false, opacity:S.bg === 'studio' ? 0.45 : 0.9 }));
+    sh.rotation.x = -Math.PI / 2; sh.position.y = fy; group.add(sh);
+  }
+  spot.target.position.set(0, 0, 0);
+  updateStlInfo();
+  $('dims').textContent = `${layers.length} layer${layers.length === 1 ? '' : 's'} · ${W} × ${H} cm · ${Math.round(depth * 10)} mm deep`;
+}
+
+/* ---------- layer list ---------- */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function renderList(){
+  const L = $('list');
+  if (!layers.length){ L.innerHTML = '<li style="display:block;background:none" class="empty">No layers yet. Add images or load the sample stack.</li>'; return; }
+  L.innerHTML = layers.map((l, i) => `
+    <li data-id="${l.id}">
+      <img src="${l.thumb}" alt="">
+      <div>
+        <div class="nm" title="${esc(l.name)}">${esc(l.name)}</div>
+        <div class="meta"><span>${i === 0 ? 'Back' : i === layers.length - 1 ? 'Front' : 'Layer ' + (i + 1)}</span>
+          <label><input type="checkbox" class="mini" data-a="white" ${l.removeWhite ? 'checked' : ''}> Remove white</label></div>
+      </div>
+      <div class="btns">
+        <button data-a="back" aria-label="Move towards back" ${i === 0 ? 'disabled' : ''}>↑</button>
+        <button data-a="fwd" aria-label="Move towards front" ${i === layers.length - 1 ? 'disabled' : ''}>↓</button>
+        <button data-a="del" aria-label="Remove layer">×</button>
+      </div>
+    </li>`).join('');
+}
+$('list').addEventListener('click', e => {
+  const b = e.target.closest('button[data-a]'); if (!b) return;
+  const id = +b.closest('li').dataset.id, i = layers.findIndex(l => l.id === id);
+  if (b.dataset.a === 'del'){ layers[i].tex.dispose(); layers.splice(i, 1); }
+  if (b.dataset.a === 'back' && i > 0) [layers[i-1], layers[i]] = [layers[i], layers[i-1]];
+  if (b.dataset.a === 'fwd' && i < layers.length - 1) [layers[i+1], layers[i]] = [layers[i], layers[i+1]];
+  renderList(); rebuild();
+});
+$('list').addEventListener('change', e => {
+  if (e.target.dataset.a !== 'white') return;
+  const l = layers.find(l => l.id === +e.target.closest('li').dataset.id);
+  l.removeWhite = e.target.checked; processLayer(l); renderList(); rebuild();
+});
+
+/* ---------- adding images ---------- */
+function addSource(src, name){ const l = { id:++uid, name, src, removeWhite:false }; processLayer(l); layers.push(l); }
+/* TGA reader (browsers can't decode TGA): uncompressed + RLE, 8/16/24/32-bit, any origin */
+function decodeTGA(b){
+  const idLen = b[0], cmType = b[1], type = b[2], cmLen = b[5] | (b[6] << 8), cmSize = b[7];
+  const w = b[12] | (b[13] << 8), h = b[14] | (b[15] << 8), bpp = b[16], desc = b[17];
+  if (![2, 3, 10, 11].includes(type) || !w || !h) throw new Error('Unsupported TGA type');
+  const grey = type === 3 || type === 11, rle = type >= 9;
+  if (!(grey ? [8, 16] : [15, 16, 24, 32]).includes(bpp)) throw new Error('Unsupported TGA bit depth');
+  const bp = (bpp + 7) >> 3;   // 15-bit pixels take 2 bytes
+  let o = 18 + idLen + (cmType ? cmLen * Math.ceil(cmSize / 8) : 0);
+  const px = new Uint8ClampedArray(w * h * 4);
+  const read = (i, d) => {
+    if (grey){ d[i] = d[i+1] = d[i+2] = b[o]; d[i+3] = bp === 2 ? b[o+1] : 255; }
+    else if (bp === 2){ const v = b[o] | (b[o+1] << 8); d[i] = ((v >> 10) & 31) * 255 / 31; d[i+1] = ((v >> 5) & 31) * 255 / 31; d[i+2] = (v & 31) * 255 / 31; d[i+3] = (desc & 15) ? (v & 0x8000 ? 255 : 0) : 255; }
+    else { d[i] = b[o+2]; d[i+1] = b[o+1]; d[i+2] = b[o]; d[i+3] = bp === 4 ? b[o+3] : 255; }
+  };
+  const tmp = new Uint8ClampedArray(4);
+  for (let n = 0; n < w * h; ){
+    if (rle){
+      const hd = b[o++], cnt = (hd & 127) + 1;
+      if (hd & 128){ read(0, tmp); o += bp; for (let k = 0; k < cnt && n < w * h; k++, n++) px.set(tmp, n * 4); }
+      else for (let k = 0; k < cnt && n < w * h; k++, n++){ read(n * 4, px); o += bp; }
+    } else { read(n * 4, px); o += bp; n++; }
+  }
+  if (o > b.length) throw new Error('Truncated TGA');
+  // all-zero alpha means the file has no real alpha channel
+  if (bp === 4 || bp === 2){ let any = false; for (let i = 3; i < px.length; i += 4) if (px[i]){ any = true; break; } if (!any) for (let i = 3; i < px.length; i += 4) px[i] = 255; }
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const img = new ImageData(w, h), top = desc & 0x20, rtl = desc & 0x10;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++){
+    const sy = top ? y : h - 1 - y, sx = rtl ? w - 1 - x : x, s = (sy * w + sx) * 4, d = (y * w + x) * 4;
+    img.data[d] = px[s]; img.data[d+1] = px[s+1]; img.data[d+2] = px[s+2]; img.data[d+3] = px[s+3];
+  }
+  c.getContext('2d').putImageData(img, 0, 0);
+  return c;
+}
+const IMG_EXT = /\.(tga|png|jpe?g|webp|gif|bmp|avif|svg)$/i;
+// Decode without blob: URLs (some sandboxed views block them): ImageBitmap first, then a data: URL
+async function decodeImage(f){
+  const img = await decodeAny(f);
+  // e.g. an SVG with no width, height or viewBox: nothing to size the layer from
+  if (!img.width || !img.height) throw new Error('Image has no size');
+  return img;
+}
+async function decodeAny(f){
+  if (window.createImageBitmap){
+    try { return await createImageBitmap(f, { premultiplyAlpha:'none', colorSpaceConversion:'none' }); } catch (e) {}
+    try { return await createImageBitmap(f); } catch (e) {}
+  }
+  const url = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(f); });
+  return await new Promise((res, rej) => { const img = new Image(); img.onload = () => res(img); img.onerror = rej; img.src = url; });
+}
+function loadFiles(files){
+  const all = [...files];
+  const list = all.filter(f => f.type.startsWith('image/') || IMG_EXT.test(f.name)).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric:true }));
+  const skipped = all.filter(f => !list.includes(f)).map(f => f.name);
+  Promise.all(list.map(f => (/\.tga$/i.test(f.name)
+    ? f.arrayBuffer().then(buf => decodeTGA(new Uint8Array(buf)))
+    : decodeImage(f)).then(img => ({ img, name:f.name }), () => ({ name:f.name }))))
+    .then(out => {
+      // failures listed in file order, not in the order their decodes happened to finish
+      const ok = out.filter(o => o.img), bad = out.filter(o => !o.img).map(o => o.name), first = !layers.length;
+      ok.forEach(o => addSource(o.img, o.name)); renderList(); rebuild(); if (first && ok.length) viewAngled();
+      const probs = [...bad, ...skipped];
+      $('loadMsg').textContent = probs.length
+        ? `Couldn't open ${probs.join(', ')}. Try exporting as PNG.` + (ok.length ? ` Added ${ok.length} other layer${ok.length > 1 ? 's' : ''}.` : '')
+        : ok.length ? `Added ${ok.length} layer${ok.length > 1 ? 's' : ''}.` : '';
+    });
+}
+$('file').addEventListener('change', e => { loadFiles(e.target.files); e.target.value = ''; });
+const drop = $('drop');
+['dragenter','dragover'].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.add('over'); }));
+['dragleave','drop'].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.remove('over'); }));
+drop.addEventListener('drop', e => loadFiles(e.dataTransfer.files));
+// a file dropped anywhere else would make the browser open it and lose the stack
+['dragover','drop'].forEach(t => addEventListener(t, e => e.preventDefault()));
+stage.addEventListener('dragover', e => e.preventDefault());
+stage.addEventListener('drop', e => { e.preventDefault(); loadFiles(e.dataTransfer.files); });
+
+/* ---------- original sample stack, drawn in code ---------- */
+function mk(draw){ const c = document.createElement('canvas'); c.width = 600; c.height = 800; draw(c.getContext('2d')); return c; }
+function rnd(s){ return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+/* Startup stack: the paper whale, five layers shipped beside the page in samples/ */
+const WHALE = [['whale-1-sky','Night sky'],['whale-2-clouds','Clouds'],['whale-3-whale','Paper whale'],['whale-4-town','Town and harbour'],['whale-5-waves','Waves']];
+const loadImg = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
+async function sample(startup){
+  try {
+    const imgs = await Promise.all(WHALE.map(([f]) => loadImg(`samples/${f}.webp`)));
+    // at startup, don't replace files the person added while the whale was loading
+    if (startup && layers.length) return;
+    // processLayer throws on a canvas tainted by a file:// image, before anything is replaced
+    const fresh = imgs.map((img, i) => { const l = { id:++uid, name:WHALE[i][1], src:img, removeWhite:false }; processLayer(l); return l; });
+    layers.forEach(l => l.tex.dispose()); layers = fresh;
+    renderList(); rebuild(); viewAngled();
+  } catch (e){ if (!(startup && layers.length)) drawnSample(); }   // e.g. opened straight from disk
+}
+// Fallback stack drawn in code
+function drawnSample(){
+  layers.forEach(l => l.tex.dispose()); layers = []; const r = rnd(7);
+  const sky = mk(x => {
+    const g = x.createLinearGradient(0, 0, 0, 800); g.addColorStop(0, '#0a1430'); g.addColorStop(1, '#33285a'); x.fillStyle = g; x.fillRect(0, 0, 600, 800);
+    x.fillStyle = '#fff'; for (let i = 0; i < 160; i++){ x.globalAlpha = r() * 0.8 + 0.2; x.fillRect(r() * 600, r() * 520, 2, 2); }
+    x.globalAlpha = 1; const m = x.createRadialGradient(150,150,0,150,150,110); m.addColorStop(0,'rgba(246,239,210,.35)'); m.addColorStop(1,'rgba(246,239,210,0)'); x.fillStyle = m; x.fillRect(0,0,320,320);
+    x.fillStyle = '#f6efd2'; x.beginPath(); x.arc(150, 150, 56, 0, 7); x.fill();
+  });
+  const peaks = mk(x => {
+    x.fillStyle = '#46568a'; x.beginPath(); x.moveTo(0, 520);
+    [[90,380],[170,460],[260,330],[360,450],[450,360],[540,440],[600,400]].forEach(([a, b]) => x.lineTo(a, b));
+    x.lineTo(600, 800); x.lineTo(0, 800); x.fill();
+    x.fillStyle = '#e8ecf6'; x.beginPath(); x.moveTo(260, 330); x.lineTo(232, 368); x.lineTo(286, 366); x.fill();
+    x.beginPath(); x.moveTo(450, 360); x.lineTo(428, 390); x.lineTo(470, 388); x.fill();
+  });
+  const forest = mk(x => {
+    for (let i = 0; i < 26; i++){
+      const px = (i % 13) * 50 + (i > 12 ? 25 : 0), base = i > 12 ? 800 : 700, hgt = 160 + (i * 37 % 90);
+      x.fillStyle = i > 12 ? '#1a362f' : '#284e45'; x.beginPath(); x.moveTo(px, base - hgt); x.lineTo(px - 34, base); x.lineTo(px + 34, base); x.fill();
+    }
+  });
+  const cabin = mk(x => {
+    x.fillStyle = '#7a4b2a'; x.fillRect(230, 560, 150, 100);
+    x.fillStyle = '#4b2a17'; x.beginPath(); x.moveTo(210, 565); x.lineTo(305, 490); x.lineTo(400, 565); x.fill();
+    x.fillStyle = '#5a3a22'; x.fillRect(340, 480, 20, 40);
+    x.fillStyle = '#ffd27a'; x.fillRect(255, 590, 34, 30); x.fillRect(325, 590, 34, 30);
+    x.fillStyle = 'rgba(220,225,235,.6)'; [[350,465,16],[362,434,20],[350,398,24]].forEach(([a, b, rr]) => { x.beginPath(); x.arc(a, b, rr, 0, 7); x.fill(); });
+  });
+  const front = mk(x => {
+    x.fillStyle = '#0f221d'; x.beginPath(); x.moveTo(0, 700);
+    for (let px = 0; px <= 600; px += 20) x.lineTo(px, 690 + Math.sin(px / 40) * 14);
+    x.lineTo(600, 800); x.lineTo(0, 800); x.fill();
+    x.strokeStyle = '#15312a'; x.lineWidth = 5;
+    for (let i = 0; i < 40; i++){ const px = i * 15 + 5; x.beginPath(); x.moveTo(px, 800); x.quadraticCurveTo(px + 8, 720, px + (i % 2 ? 18 : -10), 660 + (i * 13 % 40)); x.stroke(); }
+    x.fillStyle = '#f9f3a8'; for (let i = 0; i < 18; i++){ x.beginPath(); x.arc(40 + (i * 97 % 520), 420 + (i * 53 % 230), 3.5, 0, 7); x.fill(); }
+  });
+  [[sky,'Night sky'],[peaks,'Mountains'],[forest,'Forest'],[cabin,'Cabin'],[front,'Foreground']].forEach(([c, n]) => addSource(c, n));
+  renderList(); rebuild(); viewAngled();
+}
+$('sample').addEventListener('click', () => sample());
+$('clear').addEventListener('click', () => { layers.forEach(l => l.tex.dispose()); layers = []; renderList(); rebuild(); });
+
+/* ---------- controls ---------- */
+const fmt = { w:v => v + ' cm', h:v => v + ' cm', g:v => v + ' mm', t:v => v + ' mm', sd:v => v + ' mm', cl:v => v + '%', cr:v => (+v).toFixed(2) + ' mm', wt:v => Math.round((v - 199) / 55 * 100) + '%' };
+const key = { w:'w', h:'h', g:'gap', t:'thick', sd:'slot', cl:'clarity', cr:'clr', wt:'wt' };
+Object.keys(key).forEach(id => {
+  const el = $(id), out = $(id + 'O');
+  const upd = () => { S[key[id]] = +el.value; out.textContent = fmt[id](+el.value); el.style.setProperty('--p', ((el.value - el.min) / (el.max - el.min) * 100) + '%'); };
+  upd();
+  el.addEventListener('input', () => { upd(); if (id === 'wt'){ layers.filter(l => l.removeWhite).forEach(processLayer); renderList(); } rebuild(); });
+});
+$('fit').addEventListener('change', e => { S.fit = e.target.value; rebuild(); });
+const syncMount = () => {
+  const printed = !['standoff','none'].includes(S.mount);
+  ['finRow','slotRow','clrRow','stlBox'].forEach(id => $(id).style.display = printed ? '' : 'none');
+  $('stdNote').style.display = S.mount === 'standoff' ? '' : 'none';
+  updateStlInfo();
+};
+
+/* ---------- STL export: same geometry as the preview, in mm ---------- */
+// Print axes: X across the sheet, Y along the stack, Z up.
+function stlParts(){
+  const W = S.w * 10, H = S.h * 10, T = S.thick, N = Math.max(layers.length, 1), PITCH = S.gap, SD = S.slot, CLR = S.clr;
+  const EXT = 8, WALL = 5, BASE = 6, SLOT = T + CLR, L = 2 * EXT + (N - 1) * PITCH + SLOT;
+  const spans = []; let prev = 0;
+  for (let i = 0; i < N; i++){ const a = EXT + i * PITCH; spans.push([prev, a]); prev = a + SLOT; }
+  spans.push([prev, L]);
+  const box = (x0, x1, y0, y1, z0, z1) => [Math.min(x0, x1), Math.max(x0, x1), y0, y1, z0, z1];
+  const ribs = (x0, x1, z0, z1) => spans.map(([a, b]) => box(x0, x1, a, b, z0, z1));
+  const parts = [];
+  if (S.mount === 'L'){
+    const bw = Math.min(35, W * 0.25), hb = Math.min(50, H * 0.3);
+    parts.push({ name:'L-bracket', count:2, adds:[box(0, bw + WALL, 0, L, 0, BASE), box(bw, bw + WALL, 0, L, 0, BASE + hb), ...ribs(0, bw, BASE, BASE + SD), ...ribs(bw - Math.min(SD, bw), bw, BASE + SD, BASE + hb)], subs:[] });
+  } else if (S.mount === 'Lfull'){
+    const WI = W + 0.5, LIP = 3, X1 = WALL + WI + LIP;
+    parts.push({ name:'full-L-holder', count:1, tip:'print base-down; if your printer is under ' + Math.ceil(BASE + H + 2) + ' mm tall, lay it on the outer face of the wall', adds:[box(0, X1, 0, L, 0, BASE), box(0, WALL, 0, L, 0, BASE + H), ...ribs(WALL, X1, BASE, BASE + SD), ...ribs(WALL, WALL + SD, BASE + SD, BASE + H)], subs:[] });
+  } else if (S.mount === 'C'){
+    const arm = Math.min(30, W * 0.2), top = BASE + H + 0.5;
+    parts.push({ name:'C-bracket', count:2, tip:'lay it flat on its back (spine) face', adds:[box(arm, arm + WALL, 0, L, 0, top + BASE), box(0, arm + WALL, 0, L, 0, BASE), box(0, arm + WALL, 0, L, top, top + BASE), ...ribs(0, arm, BASE, BASE + SD), ...ribs(0, arm, top - SD, top), ...ribs(arm - Math.min(SD, arm), arm, BASE + SD, top - SD)], subs:[] });
+  } else if (S.mount === 'frame'){
+    const FW = 9, FB = 10, PEG = 4, PH = 4, WI = W + 0.5, OW = WI + 2 * FW, HP = H + 0.5, PY = [L * 0.25, L * 0.75];
+    const sockets = zf => [FW / 2, OW - FW / 2].flatMap(xc => PY.map(yc => { const h = (PEG + 0.4) / 2; return box(xc - h, xc + h, yc - h, yc + h, zf - PH - 0.5, zf + 0.01); }));
+    const pegs = []; PY.forEach(yc => { const h = PEG / 2; pegs.push(box(FW/2 - h, FW/2 + h, yc - h, yc + h, -PH, 0), box(FW/2 - h, FW/2 + h, yc - h, yc + h, HP, HP + PH)); });
+    parts.push({ name:'surround-base-rail', count:1, adds:[box(0, OW, 0, L, 0, FB), ...ribs(FW, FW + WI, FB, FB + SD)], subs:sockets(FB) });
+    parts.push({ name:'surround-top-rail', count:1, tip:'print slots up, then flip it onto the posts', adds:[box(0, OW, 0, L, 0, FW), ...ribs(FW, FW + WI, FW, FW + SD)], subs:sockets(FW) });
+    parts.push({ name:'surround-side-post', count:2, tip:'lay it flat on its outer face', adds:[box(0, FW, 0, L, 0, HP), ...ribs(FW, FW + SD, SD, HP - SD), ...pegs], subs:[] });
+  }
+  parts.forEach(p => { const b = p.adds; p.size = [0, 2, 4].map(k => Math.max(...b.map(v => v[k + 1])) - Math.min(...b.map(v => v[k]))); });
+  return { parts, L, SLOT, rib: PITCH - SLOT };
+}
+
+// Rectilinear grid mesher: union of boxes minus sockets, always watertight.
+function meshBoxes(adds, subs){
+  const all = adds.concat(subs);
+  const C = [0, 1, 2].map(k => [...new Set(all.flatMap(b => [b[2 * k], b[2 * k + 1]]))].sort((a, b) => a - b));
+  const P = C.map(c => c.length + 1);  // cells + 2 padding
+  const occ = new Uint8Array(P[0] * P[1] * P[2]), id = (i, j, k) => (i * P[1] + j) * P[2] + k;
+  const mid = C.map(c => c.slice(1).map((v, i) => (v + c[i]) / 2));
+  const inB = (b, x, y, z) => x > b[0] && x < b[1] && y > b[2] && y < b[3] && z > b[4] && z < b[5];
+  mid[0].forEach((x, i) => mid[1].forEach((y, j) => mid[2].forEach((z, k) => {
+    if (adds.some(b => inB(b, x, y, z)) && !subs.some(b => inB(b, x, y, z))) occ[id(i + 1, j + 1, k + 1)] = 1;
+  })));
+  const tris = [];
+  for (let a = 0; a < 3; a++){
+    const b = (a + 1) % 3, c = (a + 2) % 3;
+    const n = [P[0], P[1], P[2]]; n[a] -= 1;
+    for (let i = 0; i < n[0]; i++) for (let j = 0; j < n[1]; j++) for (let k = 0; k < n[2]; k++){
+      const lo = [i, j, k], hi = [i, j, k]; hi[a]++;
+      const ol = occ[id(...lo)], oh = occ[id(...hi)];
+      if (ol === oh) continue;
+      const pa = C[a][lo[a]], b0 = C[b][lo[b] - 1], b1 = C[b][lo[b]], c0 = C[c][lo[c] - 1], c1 = C[c][lo[c]];
+      const V = (bv, cv) => { const v = [0, 0, 0]; v[a] = pa; v[b] = bv; v[c] = cv; return v; };
+      let q = [V(b0, c0), V(b1, c0), V(b1, c1), V(b0, c1)]; if (!ol) q = q.reverse();
+      const nv = [0, 0, 0]; nv[a] = ol ? 1 : -1;
+      tris.push([nv, q[0], q[1], q[2]], [nv, q[0], q[2], q[3]]);
+    }
+  }
+  return tris;
+}
+function stlBinary(tris){
+  const buf = new ArrayBuffer(84 + 50 * tris.length), dv = new DataView(buf);
+  const hdr = 'Diorama Viewer bracket'; for (let i = 0; i < hdr.length; i++) dv.setUint8(i, hdr.charCodeAt(i));
+  dv.setUint32(80, tris.length, true);
+  tris.forEach((t, n) => { let o = 84 + 50 * n; t.forEach(v => v.forEach(x => { dv.setFloat32(o, x, true); o += 4; })); });
+  return new Uint8Array(buf);
+}
+const CRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++){ let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+const crc32 = u => { let c = 0xFFFFFFFF; for (let i = 0; i < u.length; i++) c = CRC[(c ^ u[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+function zipBlob(files){
+  const enc = new TextEncoder(), local = [], central = []; let off = 0;
+  for (const f of files){
+    const nm = enc.encode(f.name), d = f.data, crc = crc32(d);
+    const h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(12, 0x21, true);
+    h.setUint32(14, crc, true); h.setUint32(18, d.length, true); h.setUint32(22, d.length, true); h.setUint16(26, nm.length, true);
+    local.push(new Uint8Array(h.buffer), nm, d);
+    const c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(14, 0x21, true);
+    c.setUint32(16, crc, true); c.setUint32(20, d.length, true); c.setUint32(24, d.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    central.push(new Uint8Array(c.buffer), nm);
+    off += 30 + nm.length + d.length;
+  }
+  const cds = central.reduce((s, x) => s + x.length, 0), e = new DataView(new ArrayBuffer(22));
+  e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, cds, true); e.setUint32(16, off, true);
+  return new Blob([...local, ...central, new Uint8Array(e.buffer)], { type:'application/zip' });
+}
+const mmTxt = s => s.map(v => Math.round(v)).join(' × ') + ' mm';
+function updateStlInfo(){
+  if (['standoff','none'].includes(S.mount)) return;
+  const P = stlParts();
+  $('stlInfo').textContent = P.parts.map(p => `${p.count} × ${p.name.replace(/-/g, ' ')} · ${mmTxt(p.size)}`).join('\n') + `\nSlots ${P.SLOT.toFixed(2)} mm wide, ${S.slot} mm deep, for ${Math.max(layers.length, 1)} sheets.`;
+  $('stlInfo').style.whiteSpace = 'pre-line';
+  $('stlMsg').textContent = P.rib < 1.2 ? 'The gap between sheets is too small for the ribs to print well. Widen the gap.' : '';
+}
+/* Saving: uses Claude's download prompt when hosted on claude.ai, a normal browser download anywhere else */
+// a click before this resolves must still use Claude's prompt, so saveFile waits for it
+const downloadsReady = (async () => { try { return window.claude && window.claude.use ? await window.claude.use('downloads') : null; } catch (e) { return null; } })();
+async function saveFile(filename, blob){
+  const downloads = await downloadsReady;
+  if (downloads) return downloads.save({ filename, data:blob });
+  const url = URL.createObjectURL(blob), a = document.createElement('a');
+  a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+}
+$('stlBtn').addEventListener('click', async () => {
+  const msg = $('stlMsg');
+  const P = stlParts(); if (!P.parts.length) return;
+  msg.textContent = 'Building files…';
+  const files = P.parts.map(p => ({ name:`${p.name}_print-x${p.count}.stl`, data:stlBinary(meshBoxes(p.adds, p.subs)) }));
+  const readme = [
+    'Diorama Viewer: printable mounts', '',
+    `Sheets: ${Math.max(layers.length, 1)} at ${S.w} x ${S.h} cm, ${S.thick} mm thick, ${S.gap} mm centre to centre.`,
+    `Slots: ${P.SLOT.toFixed(2)} mm wide (${S.clr} mm clearance), ${S.slot} mm deep. Bracket length ${P.L.toFixed(1)} mm.`, '',
+    ...P.parts.map(p => `${p.name}: print ${p.count}, ${mmTxt(p.size)}${p.tip ? ' - ' + p.tip : ''}`), '',
+    'Units are millimetres. PLA, 0.2 mm layers, 15-20% infill; no supports needed in the suggested orientations.',
+    'Print one part first to check the slot fit against your actual sheet thickness.'
+  ].join('\r\n');
+  files.push({ name:'README.txt', data:new TextEncoder().encode(readme) });
+  try {
+    await saveFile(`diorama-${({ frame:'surround', Lfull:'full-L-holder', L:'L-bracket', C:'C-bracket' })[S.mount]}-stl.zip`, zipBlob(files));
+    msg.textContent = 'Saved.';
+  } catch (e){
+    msg.textContent = e && e.code === 'declined' ? 'Download cancelled.' : e && e.code === 'rate_limited' ? 'A save is already waiting for you to confirm.' : "Couldn't save the file here.";
+  }
+});
+$('mount').addEventListener('change', e => { S.mount = e.target.value; syncMount(); rebuild(); });
+$('finish').addEventListener('change', e => { S.finish = e.target.value; rebuild(); });
+syncMount();
+['acr','pl'].forEach(id => $(id).addEventListener('change', e => { S[id] = e.target.checked; rebuild(); }));
+$('rot').addEventListener('change', e => { controls.autoRotate = e.target.checked; });
+$('bgSeg').addEventListener('click', e => {
+  const b = e.target.closest('button[data-bg]'); if (!b) return;
+  S.bg = b.dataset.bg; $('bgSeg').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); setBg();
+});
+$('front').addEventListener('click', viewFront);
+$('angle').addEventListener('click', viewAngled);
+$('hidePanel').addEventListener('click', e => { const h = $('panel').classList.toggle('hide'); e.target.textContent = h ? 'Show panel' : 'Hide panel'; });
+$('snap').addEventListener('click', () => { renderer.render(scene, camera); $('snapImg').src = renderer.domElement.toDataURL('image/png'); $('modal').classList.add('on'); $('close').focus(); });
+$('close').addEventListener('click', () => $('modal').classList.remove('on'));
+$('snapSave').addEventListener('click', async () => {
+  const b64 = atob($('snapImg').src.split(',')[1]), u8 = new Uint8Array(b64.length);
+  for (let i = 0; i < b64.length; i++) u8[i] = b64.charCodeAt(i);
+  const blob = new Blob([u8], { type:'image/png' });
+  try { await saveFile('diorama-snapshot.png', blob); $('snapMsg').textContent = 'Saved.'; }
+  catch (e){ $('snapMsg').textContent = e && e.code === 'declined' ? 'Download cancelled.' : "Couldn't save here. Right-click the image instead."; }
+});
+$('modal').addEventListener('click', e => { if (e.target.id === 'modal') $('modal').classList.remove('on'); });
+addEventListener('keydown', e => { if (e.key === 'Escape') $('modal').classList.remove('on'); });
+
+viewAngled(); setBg(); sample(true);
+(function loop(){ requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
+}
+</script>
+</body>
+</html>
